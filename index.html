@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Ljubomir Matovic">
+    <link rel="shortcut icon" href="./images/play.svg" type="image/x-icon">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Custom video player</title>
+</head>
+<body>
+    <section class="container">
+        <video>
+            <source src="./video_clips/clip1.mp4" type="video/mp4">
+            <p>Your browser don't support HTML5 video. You can find it on this <a href="./video_clips/clip1.mp4">link</a>.</p>
+        </video>
+        <section class="controls">
+            <!--<section class="progress-bar">
+                <section class="progress"></section>
+            </section>-->
+            <input type="range" name="" id="" class="progress-bar" min="0" max="255">
+            <section class="left">
+                <img src="./images/play.svg" alt="play or pause" class="play icon">
+                <img src="./images/sound.svg"class="sound icon">
+                <section class="sound-bar">
+                    <section class="sound-state"></section>
+                </section>
+            </section>
+            <section class="right">
+                <section class="timer">
+                    <span class="time">00:00</span>
+                    <span class="duration"></span>
+                </section>
+                <select name="speed">
+                    <option value="0">0.5x</option>
+                    <option value="1">0.75x</option>
+                    <option value="2" selected>1.0x</option>
+                    <option value="3">1.5x</option>
+                    <option value="4">2.0x</option>
+                </select>
+                <img src="./images/fullscreen.svg" alt="fullscreen" class="fullscreenicon">
+            </section>
+        </section>
+    </section>
+</body>
+</html>
