@@ -4,7 +4,9 @@ var player = function () {
     this.playButton = document.querySelector(".play");
     this.time = document.querySelector(".time");
     this.speed = document.querySelector("[name='speed']");
+    this.soundProgress = document.querySelector("[name='sound']");
     this.mouseOnProgress = false;
+    this.previousVolume = 1;
     /**Converts seconds to string format mm:ss
      * @param {*} num
      * @returns string
@@ -49,50 +51,36 @@ var player = function () {
             (offSet / this.progress.offsetWidth) * this.video.duration;
         this.video.currentTime = slideTime;
     };
+    this.handleMute = function () {
+        if (this.muted) {
+            this.video.muted = false;
+            this.el.src = "./images/sound.svg";
+            this.progress.value = 1;
+        } else {
+            this.video.muted = true;
+            this.progress.value = 0;
+            this.el.src = "./images/mute.svg";
+            player.previousVolume = 0;
+        }
+        this.muted = !this.muted;
+    }.bind({
+        video: this.video,
+        progress: this.soundProgress,
+        muted: false,
+        el: document.querySelector("img.sound"),
+    });
+    this.changeSound = () => {
+        const volume = Number(this.soundProgress.value);
+        if (volume == 0) {
+            this.handleMute();
+        } else {
+            if (this.previousVolume == 0) {
+                this.handleMute();
+                this.soundProgress.value = volume;
+            }
+            this.video.volume = volume;
+        }
+        this.previousVolume = volume;
+    };
     return this;
 }.call({});
-window.onload = () => {
-    player.progress.setAttribute("max", player.video.duration);
-    document.querySelector(".duration").innerHTML = player.numberToTime(
-        player.video.duration
-    );
-};
-player.playButton.addEventListener("click", player.togglePlay);
-player.video.addEventListener("click", player.togglePlay);
-player.video.addEventListener("play", () => {
-    player.playButton.src = "./images/pause.svg";
-});
-player.video.addEventListener("pause", () => {
-    player.playButton.src = "./images/play.svg";
-});
-player.video.addEventListener("timeupdate", player.updateTime);
-player.progress.addEventListener("change", player.updateProgress);
-/*Mouse events for progress*/
-player.progress.addEventListener("mousedown", () => {
-    player.mouseOnProgress = true;
-});
-player.progress.addEventListener("mouseup", () => {
-    player.mouseOnProgress = false;
-});
-player.progress.addEventListener(
-    "mousemove",
-    (e) => player.mouseOnProgress && player.slideProgress(e)
-);
-/*Touch events for progress*/
-player.progress.addEventListener("touchstart", () => {
-    player.mouseOnProgress = true;
-});
-player.progress.addEventListener("touchend", () => {
-    player.mouseOnProgress = false;
-});
-player.progress.addEventListener(
-    "touchmove",
-    (e) => player.mouseOnProgress && player.slideProgress(e)
-);
-player.speed.addEventListener("change", () => {
-    const index = Number(player.speed.value);
-    player.video.playbackRate = index;
-});
-document
-    .querySelector(".fullscreen")
-    .addEventListener("click", player.toggleFullscreen);
