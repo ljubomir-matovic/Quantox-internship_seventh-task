@@ -30,26 +30,32 @@ video {
     bottom: 0;
     padding-bottom: 10px;
     width: 100%;
-    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 select {
     -webkit-appearance: none;
     appearance: none;
     border: none;
     outline: none;
-    background-color: transparent;
+    background-color: inherit;
     font-weight: inherit;
     font-size: inherit;
     font-family: inherit;
+    cursor: pointer;
 }
 select:focus,
 select:hover,
 select:active {
     background-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+}
+input {
+    cursor: pointer;
 }
 .icon {
     width: 20px;
     height: 20px;
+    cursor: pointer;
 }
 .container:hover .controls,
 .container:focus .controls {
@@ -88,5 +94,10 @@ select:active {
 @media screen and (max-width: 500px) {
     body {
         font-size: 13px;
+    }
+}
+@media screen and (max-width: 340px) {
+    section.container {
+        width: 95%;
     }
 }
