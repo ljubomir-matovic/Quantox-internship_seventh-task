@@ -11,37 +11,34 @@
 </head>
 <body>
     <section class="container">
-        <video>
+        <video autoplay>
             <source src="./video_clips/clip1.mp4" type="video/mp4">
             <p>Your browser don't support HTML5 video. You can find it on this <a href="./video_clips/clip1.mp4">link</a>.</p>
         </video>
         <section class="controls">
-            <!--<section class="progress-bar">
-                <section class="progress"></section>
-            </section>-->
-            <input type="range" name="" id="" class="progress-bar" min="0" max="255">
+            <input type="range" name="progress" class="progress-bar" min="0" step="0.5" value="0">
             <section class="left">
                 <img src="./images/play.svg" alt="play or pause" class="play icon">
                 <img src="./images/sound.svg"class="sound icon">
-                <section class="sound-bar">
-                    <section class="sound-state"></section>
-                </section>
+                <input type="range" name="sound" class="sound-bar" min="0" max="1" step="0.05" value="1">
             </section>
             <section class="right">
                 <section class="timer">
-                    <span class="time">00:00</span>
+                    <span class="time">00:00</span>/
                     <span class="duration"></span>
                 </section>
                 <select name="speed">
-                    <option value="0">0.5x</option>
-                    <option value="1">0.75x</option>
-                    <option value="2" selected>1.0x</option>
-                    <option value="3">1.5x</option>
-                    <option value="4">2.0x</option>
+                    <option value="0.5">0.5x</option>
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1.0x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2.0x</option>
                 </select>
-                <img src="./images/fullscreen.svg" alt="fullscreen" class="fullscreenicon">
+                <img src="./images/fullscreen.svg" alt="fullscreen" class="fullscreen icon">
             </section>
         </section>
     </section>
+    <script src="./js/player.js"></script>
+    <script src="./js/events.js"></script>
 </body>
 </html>
